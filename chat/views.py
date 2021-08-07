@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 unpaired = False
 latest_channel_number = 0
@@ -9,9 +10,7 @@ def lobby(request):
     if (not unpaired):
         latest_channel_number += 1
     unpaired = not unpaired
-    return render(request, 'chat/lobby.html', {
-        'room_name': str(latest_channel_number)
-    })
+    return HttpResponse(str(latest_channel_number))
 
 
 def room(request, room_name):
